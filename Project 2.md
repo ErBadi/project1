@@ -36,7 +36,7 @@ If we want to plot in a time series basis, it is similar as we plot before.
 g <- ggplot(myMean, aes(x = date, y = mean))+geom_bar(stat="identity")+theme(axis.text.x = element_text(angle = 90))+labs(title = "Number of steps per day")
 g
 ```
-
+![](figure/plot2.png)
 To retrieve the interval with highest average, we use this code:
 ```{r}
 myDT[which.max(myDT$interval), ]
@@ -54,7 +54,7 @@ myDT %>% group_by(date) %>% summarise(steps = sum(steps))
 g <- ggplot(myDT, aes(x = date, y = steps))+geom_bar(stat="identity")+theme(axis.text.x = element_text(angle = 90))+labs(title = "Number of steps per day")
 g
 ```
-
+![](figure/plot3.png)
 Now we want to compare average steps taken during weekdays and during weekends, in a per 5 minutes interval basis:
 ```{r}
 myDT$date <- as.Date(myDT$date)
@@ -68,3 +68,4 @@ myDT <- myDT %>% group_by(datetype, interval)
 activity_by_date <- aggregate(steps~interval + datetype, myDT, mean, na.rm = TRUE)
 ggplot(activity_by_date, aes(x = interval, y = steps, color = datetype))+geom_line()+facet_wrap(~datetype, ncol = 1, nrow=2)
 ```
+![](figure/plot4.png)
