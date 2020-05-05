@@ -24,7 +24,7 @@ myDT %>% group_by(date) %>% summarise(steps = sum(steps))
 g <- ggplot(myDT, aes(x = date, y = steps))+geom_bar(stat="identity")+theme(axis.text.x = element_text(angle = 90))+labs(title = "Number of steps per day")
 g
 ```
-
+![](figure/plot1.png)
 For calculating the mean and median, we use the summarise again:
 ```{r}
 myMean <- myDT %>% group_by(date) %>% summarise(mean = mean(steps), median = median(steps))
